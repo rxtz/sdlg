@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "vercel dev",
-    "deploy": "vercel && node src/domains.js"
+    "deploy": "vercel --prod && node src/domains.js"
   },
   "repository": {
     "type": "git",
