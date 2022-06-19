@@ -16,13 +16,8 @@ import { join } from 'path';
 const fetch = (...args) =>
   import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
-const vercelToken = readFileSync(
-  join(__dirname, '../vercel-token.txt'),
-  'utf-8'
-).replace('\n', '');
-
 const headers = [
-  ['Authorization', `Bearer ${vercelToken}`],
+  ['Authorization', `Bearer ${env.VERCEL_TOKEN}`],
   ['Content-Type', 'application/json'],
 ];
 
