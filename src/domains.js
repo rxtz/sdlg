@@ -17,7 +17,7 @@ const fetch = (...args) =>
   import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
 const headers = [
-  ['Authorization', `Bearer ${env.VERCEL_TOKEN}`],
+  ['Authorization', `Bearer ${process.env.VERCEL_TOKEN}`],
   ['Content-Type', 'application/json'],
 ];
 
