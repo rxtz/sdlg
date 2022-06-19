@@ -3,6 +3,7 @@
   "description": "",
   "version": "1.0.0",
   "main": "src/app.js",
+  "type": "module",
   "dependencies": {
     "compression": "^1.7.4",
     "express": "^4.17.3",
