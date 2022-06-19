@@ -1,9 +1,9 @@
-const express = require('express');
+import express from 'express';
 
-const compression = require('compression');
-const helmet = require('helmet');
+import compression from 'compression';
+import helmet from 'helmet';
 
-const router = require('./router');
+import router from './router';
 
 const app = express();
 
@@ -14,4 +14,4 @@ app.use(router);
 
 app.listen(process.env.PORT || 3000);
 
-module.exports = app;
+export default app;
