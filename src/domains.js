@@ -10,23 +10,27 @@
  * X-RateLimit-Limit: 100
  */
 
-import { readdirSync, existsSync } from 'fs';
-import { join } from 'path';
+const fs = require('fs');
+const path = require('path');
 
 const fetch = (...args) =>
   import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
+const VERCEL_TOKEN = fs
+  .readFileSync(path.join(__dirname, '../vercel-token.txt'), 'utf-8')
+  .replace('\n', '');
+
 const headers = [
-  ['Authorization', `Bearer ${process.env.VERCEL_TOKEN}`],
+  ['Authorization', `Bearer ${VERCEL_TOKEN}`],
   ['Content-Type', 'application/json'],
 ];
 
-const routesPath = join(__dirname, 'routes');
+const routesPath = path.join(__dirname, 'routes');
 
-readdirSync(routesPath).forEach((r) => {
+fs.readdirSync(routesPath).forEach((r) => {
   const domainsPath = `${routesPath}/${r}/domains.json`;
 
-  if (existsSync(domainsPath)) {
+  if (fs.existsSync(domainsPath)) {
     const domains = require(domainsPath);
 
     for (let i = 0; i < domains.length; ++i) {

@@ -1,13 +1,12 @@
-import { Router } from 'express';
-const router = Router();
+const router = require('express').Router();
 
-import { readdirSync, existsSync } from 'fs';
-import { join } from 'path';
+const fs = require('fs');
+const path = require('path');
 
 const routes = [];
-const routesPath = join(__dirname, 'routes');
+const routesPath = path.join(__dirname, 'routes');
 
-readdirSync(routesPath).forEach((r) => {
+fs.readdirSync(routesPath).forEach((r) => {
   routes.push(r);
 });
 
@@ -18,32 +17,33 @@ router.get(['/', '/:r'], (req, res) => {
     const routesLinks = [];
 
     for (const r of routes) {
-      routesLinks.push(
-        `${req.protocol}://${
-          isDev() ? `${req.get('X-Forwarded-Host')}/${r}` : `${r}.vercel.app/`
-        }`
+      routesLinks.push(`${req.protocol}://${(isDev())
+        ? `${req.get('X-Forwarded-Host')}/${r}`
+        : `${r}.vercel.app/`}`,
       );
     }
 
     res.json(routesLinks); // send routes list
   }
 
-  const r = isDev()
+  const r = (isDev())
     ? req.params['r'] // localhost:3000/<r>
     : req.hostname.split('.')[0]; // <r>.vercel.app
 
-  const staticFile = join(__dirname, '../public', r);
+  const staticFile = path.join(__dirname, '../public', r);
   const taskPath = `${routesPath}/${r}/index.js`;
 
-  if (existsSync(staticFile)) {
+  if (fs.existsSync(staticFile)) {
     res.sendFile(staticFile);
-  } else if (existsSync(taskPath)) {
+  }
+  else if (fs.existsSync(taskPath)) {
     const task = require(taskPath);
-    task({ req, res, path: taskPath.replace('index.js', '') });
-  } else {
+    task({req, res, path: taskPath.replace('index.js', '')});
+  }
+  else {
     res.status(404);
-    res.json({ error: '404 Not Found' });
+    res.json({error: '404 Not Found'});
   }
 });
 
-export default router;
+module.exports = router;
