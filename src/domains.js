@@ -46,7 +46,7 @@ fs.readdirSync(routesPath).forEach((r) => {
         )
       );
 
-      fetch('https://api.vercel.com/v8/projects/0b1/domains', {
+      fetch('https://api.vercel.com/v8/projects/sdlg/domains', {
         method: 'POST',
         headers,
         body,

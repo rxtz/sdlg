@@ -8,7 +8,14 @@ const router = require('./router');
 const app = express();
 
 app.use(compression());
-app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    useDefaults: false,
+    directives: {
+      defaultSrc: ['*'],
+    },
+  })
+);
 
 app.use(router);
 

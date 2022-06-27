@@ -1,5 +1,5 @@
 {
-  "name": "0b1",
+  "name": "sdlg",
   "description": "",
   "version": "1.0.0",
   "main": "src/app.js",
@@ -16,12 +16,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rxtz/0b1.git"
+    "url": "git+https://github.com/rxtz/sdlg.git"
   },
   "author": "rxtz",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rxtz/0b1/issues"
+    "url": "https://github.com/rxtz/sdlg/issues"
   },
-  "homepage": "https://github.com/rxtz/0b1#readme"
+  "homepage": "https://github.com/rxtz/sdlg#readme"
 }
