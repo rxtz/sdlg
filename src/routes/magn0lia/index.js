@@ -1,5 +1,5 @@
 function task({res, path}) {
-  res.sendFile(`${path}/magnolia.mp4`);
+  res.sendFile(`${path}/magn0lia.mp4`);
 }
 
 module.exports = task;
