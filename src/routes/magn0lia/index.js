@@ -1,5 +1,5 @@
 function task({res, path}) {
-  res.sendFile(`${path}/magn0lia.mp4`);
+  res.redirect('https://youtu.be/ChnrVwIdFhA');
 }
 
 module.exports = task;
